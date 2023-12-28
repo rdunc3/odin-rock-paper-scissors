@@ -1,5 +1,5 @@
 function getComputerChoice(){
-    let choices = ['Rock', 'Paper', 'Scissor'];
+    let choices = ['Rock', 'Paper', 'Scissors'];
     let choice = choices[Math.floor(Math.random()*choices.length)]
     console.log('Computer chooses ' + choice);
     return choice;
@@ -21,23 +21,15 @@ function playRound(playerSelection, computerSelection){
         if(c == 'rock')result = "You Lose! Rock beats Scissor";
         else result = "You Win! Scissor beats Rock";
     }
+    console.log(result);
     return result;
 }
 
-function game(){
-    let playerSelection;
-    let computerSelection;
-
-    for(let i = 1; i <= 5; i++){
-        console.log("Game " + i);
-        playerSelection = prompt("Choose rock, paper, or scissor").toLowerCase();
-        computerSelection = getComputerChoice().toLowerCase();
-        while(playerSelection == computerSelection){
-            playerSelection = prompt("Tie. Choose rock, paper, or scissor").toLowerCase();
-            computerSelection = getComputerChoice().toLowerCase();
-        }
-        console.log(playRound(playerSelection,computerSelection));
-    }
-}
-
-game();
+document.addEventListener('DOMContentLoaded', function() {
+    var choices = document.querySelectorAll('#choices button');
+    choices.forEach(function(button) {
+        button.addEventListener('click', function() {
+            playRound(button.id, getComputerChoice());
+        });
+    });
+});
