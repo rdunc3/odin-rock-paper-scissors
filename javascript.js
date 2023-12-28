@@ -9,9 +9,6 @@ function playRound(playerSelection, computerSelection){
     let p = playerSelection.toLowerCase();
     let c = computerSelection.toLowerCase();
     let result = "";
-    while(p == c){
-        c = getComputerChoice().toLowerCase();
-    }
     if(p == 'rock'){
         if(c == 'paper')result = "You Lose! Paper beats Rock";
         else result = "You Win! Rock beats Scissor";
@@ -27,6 +24,20 @@ function playRound(playerSelection, computerSelection){
     return result;
 }
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection,computerSelection));
+function game(){
+    let playerSelection;
+    let computerSelection;
+
+    for(let i = 1; i <= 5; i++){
+        console.log("Game " + i);
+        playerSelection = prompt("Choose rock, paper, or scissor").toLowerCase();
+        computerSelection = getComputerChoice().toLowerCase();
+        while(playerSelection == computerSelection){
+            playerSelection = prompt("Tie. Choose rock, paper, or scissor").toLowerCase();
+            computerSelection = getComputerChoice().toLowerCase();
+        }
+        console.log(playRound(playerSelection,computerSelection));
+    }
+}
+
+game();
