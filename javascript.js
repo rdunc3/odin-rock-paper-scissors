@@ -3,11 +3,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const playerScoreboard = document.querySelector('#playerScore');
     const computerScoreboard = document.querySelector('#computerScore');
     const winner = document.querySelector('#winner');
+    const reset = document.querySelectorAll('#reset button');
     let playerScore = 0, computerScore = 0;
 
     choices.forEach(function(button) {
         button.addEventListener('click', function() {
             alert(playRound(button.id, getComputerChoice()));
+        });
+    });
+    reset.forEach(function(button) {
+        button.addEventListener('click', function() {
+            alert(resetGame());
         });
     });
 
@@ -63,5 +69,12 @@ document.addEventListener('DOMContentLoaded', function() {
         else if(computerScore == 5)winner.textContent = "You Lose."
         
         return result;
+    }
+
+    function resetGame(){
+        playerScore = computerScore = 0;
+        playerScoreboard.textContent = playerScore;
+        computerScoreboard.textContent = computerScore;
+        return "Resetting Game";
     }
 });
