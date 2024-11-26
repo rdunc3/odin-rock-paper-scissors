@@ -10,35 +10,35 @@ let humanScore = 0, computerScore = 0;
 function playRound(humanChoice, computerChoice){
     if (humanChoice == "rock" && computerChoice != "rock"){
         if (computerChoice == "paper"){
-            console.log("You lose!");
+            results.innerHTML = "You lose the round!"
             computerScore++;
         }
         else {
-            console.log("You win!");
+            results.innerHTML = "You win the round!"
             humanScore++;
         }
     }
     else if (humanChoice == "paper" && computerChoice != "paper"){
         if (computerChoice == "scissors"){
-            console.log("You lose!");
+            results.innerHTML = "You lose the round!"
             computerScore++;
         }
         else {
-            console.log("You win!");
+            results.innerHTML = "You win the round!"
             humanScore++;
         }
     }
     else if (humanChoice == "scissors" && computerChoice != "scissors"){
         if (computerChoice == "rock"){
-            console.log("You lose!");
+            results.innerHTML = "You lose the round!"
             computerScore++;
         }
         else {
-            console.log("You win!");
+            results.innerHTML = "You win the round!"
             humanScore++;
         }
     }
-    else console.log("Tie!");
+    else results.innerHTML = "Round ends in a tie."
 }
 
 function getComputerChoice(){
@@ -63,11 +63,21 @@ const results = document.querySelector("#results");
 
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
-        let computerChoice = getComputerChoice();
-        playRound(button.id, computerChoice);
-        // console.log("You: " + humanScore + ", Computer: " + computerScore);
-        results.innerHTML = "Computer chose " + computerChoice + "<br>";
-        results.innerHTML += "You: " + humanScore + ", Computer: " + computerScore;
+        if (humanScore < 5 && computerScore < 5){
+            let computerChoice = getComputerChoice();
+            playRound(button.id, computerChoice);
+            // console.log("You: " + humanScore + ", Computer: " + computerScore);
+
+            results.innerHTML += "<br> Computer chose " + computerChoice;
+            results.innerHTML += "<br> You: " + humanScore + ", Computer: " + computerScore;
+
+            if (humanScore == 5) {
+                results.innerHTML += "<br>You win the game! BOOM";
+            } 
+            else if (computerScore == 5) {
+                results.innerHTML += "<br>You lose the game! DOOM";
+            }
+        }
     });
 });
 
