@@ -1,19 +1,19 @@
 // Variables
 let humanScore = 0, computerScore = 0;
 
-playGame();
+// playGame();
 // playRound(humanSelection, computerSelection);
 // console.log(humanScore, computerScore);
 
 // Functions
 function playGame(){
-    for (let i = 1;i <= 5;i++){
-        let humanSelection = getHumanChoice();
-        let computerSelection = getComputerChoice();
-        console.log("Round " + i);
-        playRound(humanSelection, computerSelection);
-        console.log("You: " + humanScore + ", Computer: " + computerScore);
-    }
+    // for (let i = 1;i <= 5;i++){
+         let humanSelection = getHumanChoice();
+         let computerSelection = getComputerChoice();
+    //     console.log("Round " + i);
+    //     playRound(humanSelection, computerSelection);
+    //     console.log("You: " + humanScore + ", Computer: " + computerScore);
+    // }
 }
 
 function playRound(humanChoice, computerChoice){
@@ -65,3 +65,13 @@ function getHumanChoice(){
 }
 
 // console.log(getHumanChoice())
+
+// Events
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        playRound(button.id, getComputerChoice());
+        console.log("You: " + humanScore + ", Computer: " + computerScore);
+    });
+});
