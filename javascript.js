@@ -6,15 +6,6 @@ let humanScore = 0, computerScore = 0;
 // console.log(humanScore, computerScore);
 
 // Functions
-function playGame(){
-    // for (let i = 1;i <= 5;i++){
-         let humanSelection = getHumanChoice();
-         let computerSelection = getComputerChoice();
-    //     console.log("Round " + i);
-    //     playRound(humanSelection, computerSelection);
-    //     console.log("You: " + humanScore + ", Computer: " + computerScore);
-    // }
-}
 
 function playRound(humanChoice, computerChoice){
     if (humanChoice == "rock" && computerChoice != "rock"){
@@ -68,10 +59,15 @@ function getHumanChoice(){
 
 // Events
 const buttons = document.querySelectorAll("button");
+const results = document.querySelector("#results");
 
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
-        playRound(button.id, getComputerChoice());
-        console.log("You: " + humanScore + ", Computer: " + computerScore);
+        let computerChoice = getComputerChoice();
+        playRound(button.id, computerChoice);
+        // console.log("You: " + humanScore + ", Computer: " + computerScore);
+        results.innerHTML = "Computer chose " + computerChoice + "<br>";
+        results.innerHTML += "You: " + humanScore + ", Computer: " + computerScore;
     });
 });
+
